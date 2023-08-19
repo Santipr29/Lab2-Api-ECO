@@ -38,14 +38,16 @@ async function getApi(pokeid) {
     squirttleGif.src = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/7.gif"
     squirttleBtn.appendChild(squirttleGif)
 
+    const tittle = document.createElement('h1')
+    tittle.innerText = "Pokedex"
 
     const section = document.createElement('section')
     section.appendChild(bulbasaurBtn)
     section.appendChild(charmanderBtn)
     section.appendChild(squirttleBtn)
 
-
-    document.getElementById('BtnsContainer').appendChild(section)
+    document.getElementById('Btns').appendChild(tittle)
+    document.getElementById('Btns').appendChild(section)
 
 
     function devolve (pokemon_id){
@@ -71,7 +73,7 @@ const Container = document.createElement('div');
 const section = document.createElement('section');
 section.id = "Card";
    
-const number = document.createElement('h3');
+const number = document.createElement('h2');
 number.textContent = `No° ${data.id}`;
 
 const img = document.createElement('img');
@@ -80,6 +82,9 @@ img.src = data.sprites.front_default;
 const name = document.createElement('h3');
 name.textContent = data.name;
 
+const evolution = document.createElement('section')
+evolution.id = "evolution"
+
 const devolveBtn = document.createElement('button');
 devolveBtn.textContent = "Devolve";
 devolveBtn.addEventListener('click', () => {
@@ -87,6 +92,7 @@ devolveBtn.addEventListener('click', () => {
     Container.innerHTML = ""
     document.getElementById('Pokedex').innerHTML=""
 });
+evolution.appendChild(devolveBtn);
 
 const evolveBtn = document.createElement('button');
 evolveBtn.textContent = "Evolve";
@@ -94,12 +100,12 @@ evolveBtn.addEventListener('click', () => {
     evolve(data.id)
     document.getElementById('Pokedex').innerHTML=""
 });
+evolution.appendChild(evolveBtn);
 
 section.appendChild(number);
 section.appendChild(img);
 section.appendChild(name);
-section.appendChild(devolveBtn);
-section.appendChild(evolveBtn);
+section.appendChild(evolution);
 
 Container.appendChild(section);
 
